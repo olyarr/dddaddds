@@ -5,7 +5,7 @@ on:
       - master
 jobs:
   check-style-java:
-    runs-on: ubuntu_latest
+    runs-on: windows_latest
     steps:
       - name: Git clone project
         uses: actions/checkout@v3
