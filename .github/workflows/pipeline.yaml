@@ -4,7 +4,7 @@ on:
     branches:
       - master
 jobs:
-  check_style_java:
+  check-style-java:
     runs-on: ubuntu_latest
     steps:
       - name: Git clone project
