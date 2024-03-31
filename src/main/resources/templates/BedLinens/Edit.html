@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование постельного белья</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="/Styles/Style.css" type="text/css" rel="stylesheet">
+</head>
+    <body>
+        <div class="header-container">
+            <div class="header-container">
+                <div class="header-line-container">
+                    <div>
+                        <a th:href="@{/}" class="header-nav-link">
+                            <span class="fs-3 fw-bold">MEOLYAMT.WAREHOUSE</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="header-line-container">
+                    <div class="header-nav-container">
+                        <a th:href="@{/bed_linens}" class="header-nav-link">
+                            <div class="header-nav-link-content-container header-nav-link-content-container-select">Постельное белье</div>
+                        </a>
+                        <a th:href="@{/blankets}" class="header-nav-link">
+                            <div class="header-nav-link-content-container">Одеяла</div>
+                        </a>
+                        <a th:href="@{/pillows}" class="header-nav-link">
+                            <div class="header-nav-link-content-container">Подушки</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="edit-container">
+            <form th:method="post" th:action="@{/bed_linens/edit}" th:object="${bedLinen}">
+                <div class="edit-button-container">
+                    <input type="submit" value="Сохранить" class="btn btn-outline-success">
+                </div>
+                <input type="hidden" th:field="*{id}" class="form-control"/>
+                <div>
+                    <label class="form-label">Артикул</label>
+                    <input type="text" th:field="*{article}" data-th-value="${payload?.getArticle()}" class="form-control"/>
+                    <div th:if="${#fields.hasErrors('article')}" th:errors="*{article}" class="error"></div>
+                </div>
+                <div>
+                    <label class="form-label">Название</label>
+                    <input type="text" th:field="*{title}" data-th-value="${payload?.getTitle()}" class="form-control"/>
+                    <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error"></div>
+                </div>
+                <div>
+                    <label class="form-label">Материал</label>
+                    <select th:field="*{material}" data-th-value="${payload?.getMaterial()}" class="form-select">
+                        <!--/*@thymesVar id="material" type="com.example.models.entity.Material"*/-->
+                        <option th:each="material : ${materials}"
+                                th:value="${material.getId()}"
+                                th:text="${material.getTitle()}">
+                        </option>
+                    </select>
+                    <div th:if="${#fields.hasErrors('material')}" th:errors="*{material}" class="error"></div>
+                </div>
+                <div>
+                    <label class="form-label">Цвет</label>
+                    <input type="text" th:field="*{color}" data-th-value="${payload?.getColor()}" class="form-control"/>
+                    <div th:if="${#fields.hasErrors('color')}" th:errors="*{color}" class="error"></div>
+                </div>
+            </form>
+            <form th:method="get" th:action="@{/bed_linens}" th:object="${bedLinen}">
+                <div class="edit-button-container">
+                    <input type="submit" value="Отменить" class="btn btn-outline-danger">
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

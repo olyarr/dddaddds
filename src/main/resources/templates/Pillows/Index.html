@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Подушки</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="/Styles/Style.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+    <div class="header-container">
+        <div class="header-line-container">
+            <div>
+                <a th:href="@{/}" class="header-nav-link">
+                    <span class="fs-3 fw-bold">MEOLYAMT.WAREHOUSE</span>
+                </a>
+            </div>
+        </div>
+        <div class="header-line-container">
+            <div class="header-nav-container">
+                <a th:href="@{/bed_linens}" class="header-nav-link">
+                    <div class="header-nav-link-content-container">Постельное белье</div>
+                </a>
+                <a th:href="@{/blankets}" class="header-nav-link">
+                    <div class="header-nav-link-content-container">Одеяла</div>
+                </a>
+                <a th:href="@{/pillows}" class="header-nav-link">
+                    <div class="header-nav-link-content-container header-nav-link-content-container-select">Подушки</div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="table-container">
+        <div class="table-header-container">
+            <form th:method="get" th:action="@{/pillows/new}">
+                <div class="index-new-button-container">
+                    <input type="submit" value="Добавить" class="btn btn-outline-success">
+                </div>
+            </form>
+            <form th:method="get" th:action="@{/pillows}" class="search-form-container">
+                <input type="text" name="title" placeholder="Поиск" class="form-control search-form-input"/>
+                <input type="submit" value="Найти" class="btn btn-outline-primary">
+            </form>
+        </div>
+        <table class="table table-bordered" style="text-align: center; vertical-align: center">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Артикул</th>
+                <th>Название</th>
+                <th>Материал наполнителя</th>
+                <th>Материал чехла</th>
+                <th colspan="2">Действия</th>
+            </tr>
+            </thead>
+            <tbody th:each="pillow : ${pillows}">
+            <tr>
+                <th><span th:text="${pillow.getId()}"></span></th>
+                <th><span th:text="${pillow.getArticle()}"></span></th>
+                <th><span th:text="${pillow.getTitle()}"></span></th>
+                <th><span th:text="${pillow.getMaterialFiller()}"></span></th>
+                <th><span th:text="${pillow.getMaterialCovers()}"></span></th>
+                <th>
+                    <form th:method="get" th:action="@{/pillows/{id}/edit(id=${pillow.getId()})}" th:object="${pillow}">
+                        <input type="submit" value="Редактировать" class="btn btn-outline-warning"/>
+                    </form>
+                </th>
+                <th>
+                    <form th:method="post" th:action="@{/pillows/{id}/delete(id=${pillow.getId()})}" th:object="${pillow}">
+                        <input type="submit" value="Удалить" class="btn btn-outline-danger"/>
+                    </form>
+                </th>
+            </tr>
+            </tbody>
+        </table>
+        <span data-th-text="${count}"></span>
+    </div>
+</body>
+</html>
