@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu_latest
     steps:
       - name: Git clone project
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
 #      - name: Set version java
 #        uses: actions/setup-java@v1
