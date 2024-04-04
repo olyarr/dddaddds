@@ -1,14 +1,29 @@
-name: Warehouse check style
+#name: Warehouse check style
+#on:
+#  push:
+#    branches:
+#      - master
+#jobs:
+#  check-style-java:
+#    runs-on: [ubuntu_latest]
+#    steps:
+#      - name: Git clone project
+#        uses: actions/checkout@v2
+#
+#      - name: Install project dependencies
+#        run: ./gradlew check -s
+name: Python_pipeline
+
 on:
   push:
     branches:
       - master
-jobs:
-  check-style-java:
-    runs-on: [ubuntu_latest]
-    steps:
-      - name: Git clone project
-        uses: actions/checkout@v2
 
-      - name: Install project dependencies
-        run: ./gradlew check -s
+jobs:
+  checkstyle_project:
+    #    needs: name_jobs
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Git clone repo
+        uses: actions/checkout@v2
