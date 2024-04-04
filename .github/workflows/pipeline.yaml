@@ -27,3 +27,6 @@ jobs:
     steps:
       - name: Git clone repo
         uses: actions/checkout@v2
+
+      - name: Install project dependencies
+        uses: ./gradlew check -s
