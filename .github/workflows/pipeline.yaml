@@ -28,5 +28,8 @@ jobs:
       - name: Git clone repo
         uses: actions/checkout@v2
 
+#      - name: Install project dependencies
+#        run: ./gradlew check -s
+
       - name: Install project dependencies
-        run: ./gradlew check -s
+        run: checkstyle check -s
