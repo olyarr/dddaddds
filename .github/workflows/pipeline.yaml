@@ -5,7 +5,7 @@ on:
       - master
 jobs:
   check-style-java:
-    runs-on: [debian]
+    runs-on: [ubuntu_latest]
     steps:
       - name: Git clone project
         uses: actions/checkout@v2
