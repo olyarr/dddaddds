@@ -38,3 +38,11 @@ dependencies {
 	implementation group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity3', version: '3.0.5.RELEASE'
 	implementation group: 'com.smattme', name: 'mysql-backup4j', version: '1.2.1'
 }
+
+tasks.withType(Checkstyle) {
+	reports {
+		xml.required = false
+		html.required = true
+		html.stylesheet resources.text.fromFile('config/xsl/checkstyle-custom.xsl')
+	}
+}
