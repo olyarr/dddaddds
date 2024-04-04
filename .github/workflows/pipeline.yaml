@@ -5,10 +5,10 @@ on:
       - master
 jobs:
   check-style-java:
-    runs-on: ubuntu_latest
+    runs-on: [ubuntu_latest]
     steps:
       - name: Git clone project
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Install project dependencies
         run: ./gradlew check -s
